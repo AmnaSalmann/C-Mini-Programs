@@ -1,0 +1,24 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+    std::ifstream quotesFile("quotes.txt");
+    std::string quote;
+    std::string quotes[100];
+    int line_count = 0;
+    //reading file and storing it into an array
+    if (quotesFile.is_open()) {
+        while (std::getline(quotesFile, quote)) {
+            quotes[line_count] = quote;
+            line_count++;
+        }
+    }
+    quotesFile.close();
+    srand(time(NULL));
+    int random_quote = rand() % line_count;
+    std::cout << quotes[random_quote] << std::endl;
+    return 0;
+}
